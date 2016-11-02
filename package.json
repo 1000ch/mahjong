@@ -1,4 +1,26 @@
 {
+  "name": "mahjong",
   "version": "0.0.0",
-  "name": "mahjong"
+  "description": "Mahjong",
+  "repository": "1000ch/mahjong",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "test": "ava",
+    "lint": "eslint ."
+  },
+  "bugs": {
+    "url": "https://github.com/1000ch/mahjong/issues"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "eslint": "^3.8.1",
+    "eslint-config-airbnb-base": "^9.0.0",
+    "eslint-plugin-import": "^2.0.1"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-airbnb-base"
+  }
 }
