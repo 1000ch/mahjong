@@ -7,11 +7,11 @@ const HAIPAI_COMMANDS = ['配牌', 'はいぱい', 'ハイパイ', 'haipai', 'h'
 const TSUMOGIRI_COMMANDS = ['ツモ切り', 'つも切り', 'ツモギリ', 'tsumogiri', 't'];
 
 class Mahjong {
-  constructor({yama, pais, discardedPais, doraDisplayedPai}) {
+  constructor({yama, pais, discardedPais, doraDisplayedPais}) {
     this.yama = yama;
     this.pais = pais;
     this.discardedPais = discardedPais;
-    this.doraDisplayedPai = doraDisplayedPai;
+    this.doraDisplayedPais = doraDisplayedPais;
   }
 
   discard(pai) {
@@ -55,7 +55,10 @@ class Mahjong {
   }
 
   get wanpai() {
-    return `🀫🀫${Mahjong.getPaiCodePointFrom(this.doraDisplayedPai)}🀫🀫🀫🀫`;
+    const padCount = 5 - this.doraDisplayedPais.length;
+    const doraDisplayedPais = this.doraDisplayedPais.map(d => Mahjong.getPaiCodePointFrom(d)).join('');
+    const pads = new Array(padCount + 1).join('🀫');
+    return `🀫🀫${doraDisplayedPais}${pads}`;
   }
 
   get tehai() {
@@ -95,7 +98,7 @@ Mahjong.haipai = () => {
   const yama = Mahjong.generateYama();
   const pais = [];
   const discardedPais = [];
-  const doraDisplayedPai = yama.shift();
+  const doraDisplayedPais = [yama.shift()];
 
   while (pais.length < 14) {
     pais.push(yama.shift());
@@ -105,7 +108,7 @@ Mahjong.haipai = () => {
     yama,
     pais,
     discardedPais,
-    doraDisplayedPai
+    doraDisplayedPais
   });
 };
 

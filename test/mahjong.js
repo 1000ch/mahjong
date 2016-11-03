@@ -5,27 +5,27 @@ test('Mahjong#constructor', t => {
   const yama = Mahjong.generateYama();
   const pais = ['東', '南', '西', '北', '白', '発', '中', '一萬', '二萬', '三萬', '四萬', '五萬', '六萬', '七萬'];
   const discardedPais = [];
-  const doraDisplayedPai = '東';
+  const doraDisplayedPais = ['東'];
 
   pais.forEach(pai => {
     yama.splice(yama.indexOf(pai), 1);
   });
 
-  if (yama.includes(doraDisplayedPai)) {
-    yama.splice(yama.indexOf(doraDisplayedPai), 1);
-  }
+  doraDisplayedPais.forEach(pai => {
+    yama.splice(yama.indexOf(pai), 1);
+  });
 
   const mahjong = new Mahjong({
     yama,
     pais,
     discardedPais,
-    doraDisplayedPai
+    doraDisplayedPais
   });
 
   t.is(mahjong.display(), '\n\n🀫🀫🀀🀫🀫🀫🀫\n\n🀀🀁🀂🀃🀄🀆🀇🀈🀉🀊🀋🀌 🀍');
   t.is(mahjong.pais.length, pais.length);
   t.is(mahjong.discardedPais.length, discardedPais.length);
-  t.is(mahjong.yama.length + mahjong.pais.length + mahjong.discardedPais.length + 1, 136);
+  t.is(mahjong.yama.length + mahjong.pais.length + mahjong.discardedPais.length + mahjong.doraDisplayedPais.length, 136);
 
   mahjong.discard('南');
   t.is(mahjong.sutehai, '🀁');
@@ -33,7 +33,7 @@ test('Mahjong#constructor', t => {
   mahjong.discard('西');
   t.is(mahjong.sutehai, '🀁🀂');
   t.is(mahjong.discardedPais.length, 2);
-  t.is(mahjong.yama.length + mahjong.pais.length + mahjong.discardedPais.length + 1, 136);
+  t.is(mahjong.yama.length + mahjong.pais.length + mahjong.discardedPais.length + mahjong.doraDisplayedPais.length, 136);
 });
 
 test('Mahjong#discard', t => {
@@ -75,7 +75,7 @@ test('Mahjong.haipai', t => {
   t.is(mahjong.pais.length, 14);
   t.is(mahjong.discardedPais.length, 0);
   t.is(mahjong.yama.length, 121);
-  t.true(Boolean(mahjong.doraDisplayedPai));
+  t.is(mahjong.doraDisplayedPais.length, 1);
   t.true(Boolean(mahjong.display()));
 });
 
