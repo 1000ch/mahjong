@@ -7,7 +7,7 @@ const HAIPAI_COMMANDS = ['配牌', 'はいぱい', 'ハイパイ', 'haipai', 'h'
 const TSUMOGIRI_COMMANDS = ['ツモ切り', 'つも切り', 'ツモギリ', 'tsumogiri', 't'];
 
 class Mahjong {
-  constructor({ yama, pais, discardedPais, doraDisplayedPai }) {
+  constructor({yama, pais, discardedPais, doraDisplayedPai}) {
     this.yama = yama;
     this.pais = pais;
     this.discardedPais = discardedPais;
@@ -105,11 +105,11 @@ Mahjong.haipai = () => {
     yama,
     pais,
     discardedPais,
-    doraDisplayedPai,
+    doraDisplayedPai
   });
 };
 
-Mahjong.getPaiCodePointFrom = (pai) => {
+Mahjong.getPaiCodePointFrom = pai => {
   if (!PAIS.includes(pai)) {
     return null;
   }
@@ -118,18 +118,18 @@ Mahjong.getPaiCodePointFrom = (pai) => {
   return String.fromCodePoint(0x1F000 + index);
 };
 
-Mahjong.parseCommand = (command) => {
+Mahjong.parseCommand = command => {
   const c = command.trim();
 
   if (HAIPAI_COMMANDS.includes(c)) {
     return {
-      type: Mahjong.HAIPAI,
+      type: Mahjong.HAIPAI
     };
   }
 
   if (TSUMOGIRI_COMMANDS.includes(c)) {
     return {
-      type: Mahjong.TSUMOGIRI,
+      type: Mahjong.TSUMOGIRI
     };
   }
 
@@ -138,16 +138,16 @@ Mahjong.parseCommand = (command) => {
   if (pai) {
     return {
       type: Mahjong.DISCARD,
-      pai,
+      pai
     };
   }
 
   return {
-    type: Mahjong.UNKNOWN,
+    type: Mahjong.UNKNOWN
   };
 };
 
-Mahjong.normalizePai = (pai) => {
+Mahjong.normalizePai = pai => {
   const p = pai
     .replace(/^1/, '一')
     .replace(/^2/, '二')

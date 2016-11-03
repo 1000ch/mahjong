@@ -1,13 +1,13 @@
 const test = require('ava');
 const Mahjong = require('../mahjong');
 
-test('Mahjong#constructor', (t) => {
+test('Mahjong#constructor', t => {
   const yama = Mahjong.generateYama();
   const pais = ['東', '南', '西', '北', '白', '発', '中', '一萬', '二萬', '三萬', '四萬', '五萬', '六萬', '七萬'];
   const discardedPais = [];
   const doraDisplayedPai = '東';
 
-  pais.forEach((pai) => {
+  pais.forEach(pai => {
     yama.splice(yama.indexOf(pai), 1);
   });
 
@@ -19,7 +19,7 @@ test('Mahjong#constructor', (t) => {
     yama,
     pais,
     discardedPais,
-    doraDisplayedPai,
+    doraDisplayedPai
   });
 
   t.is(mahjong.display(), '\n\n🀫🀫🀀🀫🀫🀫🀫\n\n🀀🀁🀂🀃🀄🀆🀇🀈🀉🀊🀋🀌 🀍');
@@ -41,21 +41,21 @@ test('Mahjong#constructor', (t) => {
   t.is(mahjong.pais.length, 14);
 });
 
-test('Mahjong.generateYama()', (t) => {
+test('Mahjong.generateYama()', t => {
   const yama = Mahjong.generateYama();
   t.is(yama.length, 136);
 });
 
-test('Mahjong.haipai', (t) => {
+test('Mahjong.haipai', t => {
   const mahjong = Mahjong.haipai();
   t.is(mahjong.pais.length, 14);
   t.is(mahjong.discardedPais.length, 0);
   t.is(mahjong.yama.length, 121);
-  t.true(!!mahjong.doraDisplayedPai);
-  t.true(!!mahjong.display());
+  t.true(Boolean(mahjong.doraDisplayedPai));
+  t.true(Boolean(mahjong.display()));
 });
 
-test('Mahjong.getPaiCodePointFrom', (t) => {
+test('Mahjong.getPaiCodePointFrom', t => {
   t.is(Mahjong.getPaiCodePointFrom('東'), '🀀');
   t.is(Mahjong.getPaiCodePointFrom('南'), '🀁');
   t.is(Mahjong.getPaiCodePointFrom('西'), '🀂');
@@ -65,11 +65,11 @@ test('Mahjong.getPaiCodePointFrom', (t) => {
   t.is(Mahjong.getPaiCodePointFrom('中'), '🀄');
 });
 
-test('Mahjong.TSUMOGIRI', (t) => {
+test('Mahjong.TSUMOGIRI', t => {
   t.is(Mahjong.parseCommand('t').type, Mahjong.TSUMOGIRI);
 });
 
-test('Mahjong.normalizePai', (t) => {
+test('Mahjong.normalizePai', t => {
   t.is(Mahjong.normalizePai('ton'), '東');
   t.is(Mahjong.normalizePai('tonn'), '東');
   t.is(Mahjong.normalizePai('nan'), '南');

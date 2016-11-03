@@ -8,19 +8,19 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "test": "ava",
-    "lint": "eslint ."
+    "test": "nyc ava",
+    "lint": "xo"
   },
   "bugs": {
     "url": "https://github.com/1000ch/mahjong/issues"
   },
   "devDependencies": {
     "ava": "^0.16.0",
-    "eslint": "^3.8.1",
-    "eslint-config-airbnb-base": "^9.0.0",
-    "eslint-plugin-import": "^2.0.1"
+    "nyc": "^8.4.0",
+    "xo": "^0.17.0"
   },
-  "eslintConfig": {
-    "extends": "eslint-config-airbnb-base"
+  "xo": {
+    "esnext": true,
+    "space": 2
   }
 }
