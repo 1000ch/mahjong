@@ -34,14 +34,38 @@ test('Mahjong#constructor', t => {
   t.is(mahjong.sutehai, '🀁🀂');
   t.is(mahjong.discardedPais.length, 2);
   t.is(mahjong.yama.length + mahjong.pais.length + mahjong.discardedPais.length + 1, 136);
-
-  [...Array(16).keys()].forEach(() => mahjong.tsumogiri());
-  t.is(mahjong.discardedPais.length, 18);
-  t.is(mahjong.wanpai, '🀫🀫🀀🀫🀫🀫🀫');
-  t.is(mahjong.pais.length, 14);
 });
 
-test('Mahjong.generateYama()', t => {
+test('Mahjong#discard', t => {
+  const mahjong = Mahjong.haipai();
+  t.is(mahjong.sutehai, '');
+  t.is(mahjong.discardedPais.length, 0);
+
+  const discardedPais = [];
+  const count = 3;
+  let i = count;
+  while (i--) {
+    const random = Math.floor(Math.random() * mahjong.pais.length + 1);
+    const selectedPai = mahjong.pais[random];
+    mahjong.discard(selectedPai);
+  }
+  t.is(mahjong.discardedPais.length, count);
+});
+
+test('Mahjong#tsumogiri', t => {
+  const mahjong = Mahjong.haipai();
+  t.is(mahjong.sutehai, '');
+  t.is(mahjong.discardedPais.length, 0);
+
+  const count = 10;
+  let i = count;
+  while (i--) {
+    mahjong.tsumogiri();
+  }
+  t.is(mahjong.discardedPais.length, count);
+});
+
+test('Mahjong.generateYama', t => {
   const yama = Mahjong.generateYama();
   t.is(yama.length, 136);
 });
