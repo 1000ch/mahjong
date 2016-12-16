@@ -1,5 +1,5 @@
 const test = require('ava');
-const Mahjong = require('../mahjong');
+const Mahjong = require('../');
 
 test('Mahjong#constructor', t => {
   const yama = Mahjong.generateYama();
