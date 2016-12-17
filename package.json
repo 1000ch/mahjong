@@ -15,8 +15,8 @@
     "url": "https://github.com/1000ch/mahjong/issues"
   },
   "devDependencies": {
-    "ava": "^0.16.0",
-    "nyc": "^8.4.0",
+    "ava": "^0.17.0",
+    "nyc": "^10.0.0",
     "xo": "^0.17.0"
   },
   "xo": {
