@@ -8,8 +8,10 @@
     "node": ">=6.0.0"
   },
   "scripts": {
+    "pretest": "npm run lint",
     "test": "nyc ava",
-    "lint": "xo"
+    "lint": "xo",
+    "postversion": "git push && git push --tags"
   },
   "bugs": {
     "url": "https://github.com/1000ch/mahjong/issues"
