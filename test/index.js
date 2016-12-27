@@ -41,11 +41,10 @@ test('Mahjong#discard', t => {
   t.is(mahjong.sutehai, '');
   t.is(mahjong.discardedPais.length, 0);
 
-  const discardedPais = [];
   const count = 3;
   let i = count;
   while (i--) {
-    const random = Math.floor(Math.random() * mahjong.pais.length + 1);
+    const random = Math.floor(Math.random() * (mahjong.pais.length + 1));
     const selectedPai = mahjong.pais[random];
     mahjong.discard(selectedPai);
   }
